@@ -1,0 +1,97 @@
+#include<stdio.h>
+#include<math.h>
+#define PI 3.1415
+int main(void)
+{
+int deg1, deg2, deg3;
+int dist1, dist2, dist3;
+int bearing, range;
+double nBearing;    //Changed from 'int' to 'double' to accept decimal calculations
+
+// First Waypoint Degree/Distance
+printf("Please enter heading for Waypoint 1 in degrees: ");
+scanf("%d", &deg1);
+printf("Please enter distance to Waypoint 1 in meter: ");
+scanf("%d", &dist1);
+
+//X-Direction
+if ((deg1 >= 270 && deg1 <= 360) || (deg1 >= 0 && deg1 <= 90)){
+    printf("Move on heading due East for %.2f meters\n", dist1 * cos(deg1 * (PI/180)));}
+else{
+    printf("Move on heading due West for %.2f meters\n", -dist1 * cos(deg1 * (PI/180)));}
+
+//Y-Direction
+if (deg1 >=0 && deg1 <=180){
+    printf("Move on heading due North for %.2f meters\n", dist1 * sin(deg1 * (PI/180)));}
+else{
+    printf("Move on heading due South for %.2f meters\n", -deg1 * sin(deg1 * (PI/180)));}
+
+//Second Waypoint/Direction
+printf("Please enter heading for Waypoint 2 in degrees: ");
+scanf("%d", &deg2);
+printf("Please enter distance to Waypoint 2 in meter: ");
+scanf("%d", &dist2);
+
+//X-Direction
+if ((deg2 >= 270 && deg2 <= 360) || (deg2 >= 0 && deg2 <= 90)){
+    printf("Move on heading due East for %.2f meters\n", dist2 * cos(deg2 * (PI/180)));}
+else{
+    printf("Move on heading due West for %.2f meters\n", -dist2 * cos(deg2 * (PI/180)));}
+
+//Y-Direction
+if (deg2 >=0 && deg2 <=180){
+    printf("Move on heading due North for %.2f meters\n", dist2 * sin(deg2 * (PI/180)));}
+else{
+    printf("Move on heading due South for %.2f meters\n", -deg2 * sin(deg2 * (PI/180)));}
+
+//Third Waypoint/Direction
+printf("Please enter heading for Waypoint 3 in degrees: ");
+scanf("%d", &deg3);
+printf("Please enter distance to Waypoint 3 in meter: ");
+scanf("%d", &dist3);
+
+//X-Direction
+if ((deg3 >= 270 && deg3 <= 360) || (deg3 >= 0 && deg3 <= 90)){
+    printf("Move on heading due East for %.2f meters\n", dist3 * cos(deg3 * (PI/180)));}
+else{
+    printf("Move on heading due West for %.2f meters\n", -dist3 * cos(deg3 * (PI/180)));}
+
+//Y-Direction
+if (deg3 >=0 && deg3 <=180){
+    printf("Move on heading due North for %.2f meters\n", dist3 * sin(deg3 * (PI/180)));}
+else{
+    printf("Move on heading due South for %.2f meters\n", -dist3 * sin(deg3 * (PI/180)));}
+
+//Target Bearing
+printf("Please enter target bearing in degrees: ");
+scanf("%d", &bearing);
+printf("Please enter target range in meters: ");
+scanf("%d", &range);
+
+//Test Input to Ensure that program is catching data
+//printf("%d\n", range);
+//printf("%d\n", bearing);
+
+//Range
+if (range >= 100 && range <= 499){
+        nBearing = bearing + (abs(bearing) * 0.05);}    //added 'abs' for absolute value
+else if (range >= 500 && range <= 999){
+    nBearing = bearing + (abs(bearing) * 0.08);}
+else if (range >= 1000 && range <= 1499){
+    nBearing = bearing + (abs(bearing) * 0.10);}
+else if(range >= 1500 && range <= 2000){
+    nBearing = bearing + (abs(bearing) * 0.12);}
+
+//Test Calc to see if proper algorithm is used
+//printf("%.1f\n",nBearing);
+
+//Bearing
+if (((bearing >= -30) && (bearing <= -15)) || ((bearing >= 15) && (bearing <= 30))){
+    printf("Fire torpedo on heading %.1f degrees with a spread of a 5 degrees\n", nBearing);}
+else if ( bearing >= -14 && bearing <= 14){
+    printf("Fire torpedo on heading of %.1f degrees with a spread of a 2 degrees\n", nBearing);}
+
+
+
+return 0;
+}
